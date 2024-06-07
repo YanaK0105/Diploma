@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Авторизация</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet"  />
+</head>
+<center>
+<body>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+<h1>Login page</h1>
+<p>Example user: user / password</p>
+<div style="color:red" th:if="${loginError}" class="error">Wrong user or password</div>
+<form th:action="@{/login}" method="post">
+<table>
+    <tr><td><label for="username">Email</label>:</td><td>
+    <tr><td><input type="text" id="username" name="username" autofocus="autofocus" /> <br /></td><td>
+    <br>
+    <tr><td><label for="password">Password</label>:</td><td>
+    <tr><td><input type="password" id="password" name="password" /> <br /></td><td>
+    <br>
+</table>
+    <br>
+    <input type="submit" value="Log in" />
+</form>
+<p><a href="/index" th:href="@{/index}">Back to home page</a></p>
+</body>
+</center>
+</html>

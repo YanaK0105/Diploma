@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Пользователь</title>
+</head>
+<center>
+<body>
+     <br>
+     <br>
+     <br>
+     <br>
+     <br>
+<h1>Личная страница пользователя</h1>
+<form method="get" th:action="@{/id}"></form>
+
+<p  th:text = "${user.id}">value</p>
+<p  th:text = "${user.name}">value</p>
+<p  th:text = "${user.email}">value</p>
+<a th:href="@{/index}">Главная страница</a>
+<div th:if="${currentUser!=null}">
+    <div th:if="${currentUser!=null && currentUser.getId()!=user.getId()}">
+        <br>
+        <br>
+        <h1>Отправить сообщение пользователю</h1>
+        <form th:action="@{'/sendMessage/' + ${user.id}}" method="post">
+            <label>
+                <textarea name="message" placeholder="Ваше сообщение"></textarea>
+            </label>
+            <br>
+            <br>
+            <button type="submit">Отправить</button>
+            <br>
+        </form>
+    </div>
+    <div th:if="${currentUser.getRole().name()=='ADMIN' || currentUser.getId() == user.getId()}">
+        <br>
+        <br>
+        <a th:href="@{'/people/' + ${user.getId()} + '/edit'}">Изменить пользователя</a>
+        <br>
+        <br>
+        <form th:action="@{'/people/delete/' + ${user.id}}" method="post">
+            <br>
+            <button type="submit">Удалить пользователя</button>
+        </form>
+    </div>
+</div>
+</body>
+</center>
+</html>

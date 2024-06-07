@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>welcome</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet"  />
+</head>
+<center>
+<body>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+
+<h1>Welcome</h1>
+
+<div th:if="${user==null}">
+    <div>
+        <div>
+            <form action="#" th:action="@{/logout}" method="post">
+                <a href="/login">Авторизация</a>
+            </form>
+        </div>
+    </div>
+<br>
+
+    <div th:fragment="userCreate">
+        <div>
+            <form action="#" th:action="@{people/userCreate}" method="post">
+                <a href="people/userCreate">Регистрация</a>
+            </form>
+        </div>
+    </div>
+</div>
+<div th:if="${user!=null}">
+    <p>Авторизован под именем: <span th:text="${user.getName()}"></span></p>
+    <p>Текущая роль:
+        <span th:text="${user.getRole()}"></span>
+    </p>
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">Выйти</button>
+    </form>
+</div>
+<hr>
+<h1>Все пользователи</h1>
+<div th:each="user: ${users}">
+    <a th:href="@{'/people/' + ${user.id}}" th:text="${user.name}"></a>
+</div>
+
+</body>
+</center>
+</html>

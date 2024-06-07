@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация нового пользователя</title>
+    <link rel="stylesheet" href="userCreate.css">
+</head>
+<center>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+<h1>Регистрация</h1>
+<body>
+<div th:if="${userRegisterResult.isError()}">
+    <p th:text="${userRegisterResult.getErrorMessage()}" style="color: red;"></p>
+</div>
+<form action="#" th:action="@{/people/userCreate}" th:object="${user}" method="post">
+    <table>
+        <tr><td>Name:</td><td><input type="text" th:field="*{name}"/></td></tr>
+        <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
+
+        <tr><td>Password:</td><td><input type="password" th:field="*{password}"/></td></tr>
+        <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name error</div>
+
+        <tr><td>Email:</td><td><input type="email" th:field="*{email}"/></td></tr>
+        <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name error</div>
+
+        </td></tr>
+        <tr><td colspan="2">
+            <div class="submitBotton">
+                <input type="submit" value="register"/>
+            </div>
+        </td></tr>
+
+    </table>
+</form>
+</body>
+</center>
+</html>
